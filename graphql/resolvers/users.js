@@ -5,9 +5,46 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 
 const User = require("../../models/User");
-const { validateRegisterNewUser } = require("./validators");
+const { validateRegisterNewUser, validateLogin } = require("./validators");
+
+// helpers
+function makeToken(res) {
+  return jwt.sign(
+    {
+      id: res.id,
+      email: res.email,
+      username: res.username,
+    },
+    process.env.SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+}
+
 module.exports = {
   Mutation: {
+    // Async function to login
+    async login(_, { username, password }) {
+      const { valid, errors } = validateLogin(username, password);
+      const user = await User.findOne({ username });
+
+      if (!user) {
+        errors.general = "User not found";
+        throw new UserInputError("User was not found", { errors });
+      }
+
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        errors.general = "Wrong password";
+        throw new UserInputError("Wrong password", { errors });
+      }
+      const token = makeToken(user);
+      return {
+        ...user._doc,
+        id: user._id,
+        token,
+      };
+    },
+
     // Async function to register a new user
     async register(
       _,
@@ -48,15 +85,7 @@ module.exports = {
 
       const res = await newUser.save();
 
-      const token = jwt.sign(
-        {
-          id: res.id,
-          email: res.email,
-          username: res.username,
-        },
-        process.env.SECRET_KEY,
-        { expiresIn: "1h" }
-      );
+      const token = makeToken(res);
 
       return {
         ...res._doc,
