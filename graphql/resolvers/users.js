@@ -6,7 +6,8 @@ require("dotenv").config();
 const User = require("../../models/User");
 
 module.exports = {
-  Change: {
+  Mutation: {
+    // Async function to register a new user
     async register(
       _,
       { registerInput: { username, email, password, confirmPassword } },
@@ -16,7 +17,7 @@ module.exports = {
       // TODO: VALIDATE USER DATA
       // TODO: MAKE SURE USER != EXIST
       // TODO: HASH PASSRD AND CREATE AUTH TOKEN
-      password = await bcrytp.hash(password, 10);
+      password = await bcrypt.hash(password, 10);
 
       const newUser = new User({
         email,
@@ -34,7 +35,7 @@ module.exports = {
           username: res.username,
         },
         process.env.SECRET_KEY,
-        { expires: "1h" }
+        { expiresIn: "1h" }
       );
 
       return {

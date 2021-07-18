@@ -23,7 +23,7 @@ const td = gql`
     confirmPassword: String!
     email: String!
   }
-  type Change {
+  type Mutation {
     register(registerInput: RegisterInput): User!
   }
 `;
