@@ -1,7 +1,6 @@
 const { gql } = require("apollo-server");
-const Post = require("../models/Post");
 
-module.export = gql`
+const td = gql`
   type Post {
     id: ID!
     body: String!
@@ -12,3 +11,5 @@ module.export = gql`
     getPosts: [Post]
   }
 `;
+
+module.exports = td;

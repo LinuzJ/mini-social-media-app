@@ -1,15 +1,15 @@
 // dependencies
 const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
+const { gql } = require("apollo-server");
 
 // "local" imports
-const { typeDefs } = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
+const typeDefs = require("./graphql/typeDefs");
 const dotenv = require("dotenv");
 require("dotenv").config();
 
 // main
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
