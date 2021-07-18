@@ -1,38 +1,14 @@
 // dependencies
 const { ApolloServer } = require("apollo-server");
-const gql = require("graphql-tag");
 const mongoose = require("mongoose");
 
 // "local" imports
-const Post = require("./models/Post");
+const { typeDefs } = require("./graphql/typeDefs");
+const resolvers = require("./graphql/resolvers");
 const dotenv = require("dotenv");
 require("dotenv").config();
 
 // main
-const typeDefs = gql`
-  type Post {
-    id: ID!
-    body: String!
-    username: String!
-    createdAt: String!
-  }
-  type Query {
-    getPosts: [Post]
-  }
-`;
-
-const resolvers = {
-  Query: {
-    async getPosts() {
-      try {
-        const recieved = await Post.find();
-        return recieved;
-      } catch (e) {
-        throw new Error(e);
-      }
-    },
-  },
-};
 
 const server = new ApolloServer({
   typeDefs,
