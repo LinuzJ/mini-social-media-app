@@ -10,6 +10,22 @@ const td = gql`
   type Query {
     getPosts: [Post]
   }
+  type User {
+    id: ID!
+    email: String!
+    authToken: String!
+    username: String!
+    createdAt: String!
+  }
+  input RegisterInput {
+    username: String!
+    password: String!
+    confirmPassword: String!
+    email: String!
+  }
+  type Change {
+    register(registerInput: RegisterInput): User!
+  }
 `;
 
 module.exports = td;

@@ -5,4 +5,7 @@ module.exports = {
   Query: {
     ...postResolvers.Query,
   },
+  Change: {
+    ...userResolvers.Change,
+  },
 };
