@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 require("dotenv").config();
 
 const User = require("../../models/User");
-
+const { validateRegisterNewUser } = require("./validators");
 module.exports = {
   Mutation: {
     // Async function to register a new user
@@ -16,6 +16,16 @@ module.exports = {
       info
     ) {
       // TODO: VALIDATE USER DATA
+      const { valid, errors } = validateRegisterNewUser(
+        username,
+        email,
+        password,
+        confirmPassword
+      );
+
+      if (!valid) {
+        throw new UserInputError("Errors", { errors });
+      }
       // MAKE SURE USER != EXIST
       const user = await User.findOne({ username });
       if (user) {
