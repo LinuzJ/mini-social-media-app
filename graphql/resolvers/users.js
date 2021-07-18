@@ -27,6 +27,10 @@ module.exports = {
       const { valid, errors } = validateLogin(username, password);
       const user = await User.findOne({ username });
 
+      if (!valid) {
+        throw new UserInputError("Errors", { errors });
+      }
+
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User was not found", { errors });
@@ -52,7 +56,7 @@ module.exports = {
       context,
       info
     ) {
-      // TODO: VALIDATE USER DATA
+      // VALIDATE USER DATA
       const { valid, errors } = validateRegisterNewUser(
         username,
         email,

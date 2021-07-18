@@ -30,7 +30,7 @@ module.exports.validateRegisterNewUser = (
 
   return {
     errors,
-    valid: Object.keys(errors).length === 1,
+    valid: Object.keys(errors).length === 0,
   };
 };
 
@@ -49,6 +49,6 @@ module.exports.validateLogin = (username, password) => {
 
   return {
     errors,
-    valid: Object.keys(errors).length === 1,
+    valid: Object.keys(errors).length === 0,
   };
 };
