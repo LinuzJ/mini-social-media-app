@@ -24,7 +24,7 @@ module.exports.validateRegisterNewUser = (
   // Then check password
   if (password === "") {
     errors.password = "Password cannot be empty";
-  } else if (password !== config.password) {
+  } else if (password !== confirmPassword) {
     errors.confirmPassword = "Passwords must match";
   }
 

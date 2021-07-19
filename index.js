@@ -9,15 +9,18 @@ const typeDefs = require("./graphql/typeDefs");
 const dotenv = require("dotenv");
 require("dotenv").config();
 
-// main
+// Setup Apollo server for graphql handling
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({req}) =>  ({req})
 });
 
+// Setup and connect to mongoDB
 mongoose
-  .connect(process.env.MONGODB, {
+  .connect(
+    process.env.MONGODB,
+    {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
