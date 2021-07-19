@@ -7,9 +7,6 @@ const td = gql`
     username: String!
     createdAt: String!
   }
-  type Query {
-    getPosts: [Post]
-  }
   type User {
     id: ID!
     email: String!
@@ -23,9 +20,16 @@ const td = gql`
     confirmPassword: String!
     email: String!
   }
+  
+  type Query {
+    getPosts: [Post]
+    getPost(postId: ID!): Post
+  }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(username: String!, password: String!): User!
+    createPost(body: String!): Post!
+    deletePost(postId: ID!): String!
   }
 `;
 
