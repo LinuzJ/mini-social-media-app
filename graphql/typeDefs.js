@@ -10,7 +10,7 @@ const td = gql`
   type User {
     id: ID!
     email: String!
-    authToken: String!
+    authToken: String
     username: String!
     createdAt: String!
   }
@@ -20,7 +20,7 @@ const td = gql`
     confirmPassword: String!
     email: String!
   }
-  
+
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post

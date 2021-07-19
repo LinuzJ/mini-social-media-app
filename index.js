@@ -13,6 +13,7 @@ require("dotenv").config();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({req}) =>  ({req})
 });
 
 mongoose

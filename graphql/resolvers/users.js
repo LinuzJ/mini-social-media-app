@@ -42,6 +42,7 @@ module.exports = {
         throw new UserInputError("Wrong password", { errors });
       }
       const token = makeToken(user);
+
       return {
         ...user._doc,
         id: user._id,
