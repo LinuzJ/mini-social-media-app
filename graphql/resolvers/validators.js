@@ -1,3 +1,5 @@
+// Function used to validate the variables of a new user
+
 module.exports.validateRegisterNewUser = (
   username,
   email,

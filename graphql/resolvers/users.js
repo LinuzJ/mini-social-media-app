@@ -8,18 +8,19 @@ const User = require("../../models/User");
 const { validateRegisterNewUser, validateLogin } = require("./validators");
 
 // helpers
-function makeToken(res) {
+function makeToken(user) {
   return jwt.sign(
     {
-      id: res.id,
-      email: res.email,
-      username: res.username,
+      id: user.id,
+      email: user.email,
+      username: user.username
     },
     process.env.SECRET_KEY,
-    { expiresIn: "1h" }
+    { expiresIn: '1h' }
   );
 }
 
+// EXPORTS
 module.exports = {
   Mutation: {
     // Async function to login
@@ -53,9 +54,7 @@ module.exports = {
     // Async function to register a new user
     async register(
       _,
-      { registerInput: { username, email, password, confirmPassword } },
-      context,
-      info
+      { registerInput: { username, email, password, confirmPassword } }
     ) {
       // VALIDATE USER DATA
       const { valid, errors } = validateRegisterNewUser(
