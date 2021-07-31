@@ -13,10 +13,10 @@ function makeToken(user) {
     {
       id: user.id,
       email: user.email,
-      username: user.username
+      username: user.username,
     },
     process.env.SECRET_KEY,
-    { expiresIn: '1h' }
+    { expiresIn: "1h" }
   );
 }
 
@@ -25,23 +25,25 @@ module.exports = {
   Mutation: {
     // Async function to login
     async login(_, { username, password }) {
+      // First validate user
       const { valid, errors } = validateLogin(username, password);
-      const user = await User.findOne({ username });
-
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
 
+      // Check if user exists
+      const user = await User.findOne({ username });
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User was not found", { errors });
       }
-
+      // Then check if the given password matches the users password
       const match = await bcrypt.compare(password, user.password);
       if (!match) {
         errors.general = "Wrong password";
         throw new UserInputError("Wrong password", { errors });
       }
+      // Create token
       const token = makeToken(user);
 
       return {
@@ -94,7 +96,7 @@ module.exports = {
       return {
         ...res._doc,
         id: res._id,
-        token
+        token,
       };
     },
   },
