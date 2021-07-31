@@ -49,7 +49,7 @@ module.exports = {
       return {
         ...user._doc,
         id: user._id,
-        token,
+        authToken: token,
       };
     },
 
@@ -96,7 +96,7 @@ module.exports = {
       return {
         ...res._doc,
         id: res._id,
-        token,
+        authToken: token,
       };
     },
   },
