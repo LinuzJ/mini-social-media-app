@@ -13,14 +13,12 @@ require("dotenv").config();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({req}) =>  ({req})
+  context: ({ req }) => ({ req }),
 });
 
-// Setup and connect to mongoDB
+// Setup and connection to the MONGODB database
 mongoose
-  .connect(
-    process.env.MONGODB,
-    {
+  .connect(process.env.MONGODB, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
