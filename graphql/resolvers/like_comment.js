@@ -21,7 +21,7 @@ module.exports = {
             // Then get the post object from ou db 
             const post = await Post.findById(postId);
 
-            // Add the comment if the post exists, then save it to the db
+            // Add the comment if the post exists, then save it to the db. Else throw error
             if ( post ) {
                 post.comments.unshift({
                     body,
@@ -30,7 +30,7 @@ module.exports = {
                 })
                 await post.save();
                 return post;
-            }
+            } else throw new UserInputError('Post is not availible')
         }
     }
 }
