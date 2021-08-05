@@ -1,6 +1,6 @@
 const Post = require("../../models/Post");
 const checkAuth = require("./checkAuth");
-const { UserInputError } = require("apollo-server");
+const { UserInputError, AuthenticationError } = require("apollo-server");
 const User = require("../../models/User");
 
 module.exports = {
@@ -25,13 +25,38 @@ module.exports = {
       if (post) {
         post.comments.unshift({
           body,
-          user: user.username,
+          username: user.username,
           createdAt: new Date().toISOString(),
         });
         // Save the post, then return the object
         await post.save();
         return post;
       } else throw new UserInputError("Post is not availible");
+    },
+    // Then we create the function for deleting comments
+    async deleteComment(_, { postId, commentId }, context) {
+      // Validate user
+      const user = checkAuth(context);
+      // Find the post object in question
+      const post = await Post.findById(postId);
+
+      if (post) {
+        // Find the comment that we are looking for from within the post object
+        const commentIdx = post.comments.indexOf((x) => c.id === commentId);
+
+        // If the the creator of the comment matches the comment objects user
+        if (post.comments[commentIdx].username === user.username) {
+          // Delete post and save -> return post object
+          post.comments.splice(commentIdx, 1);
+          await post.save();
+          return post;
+        } else {
+          // Safety if something goes wrong
+          throw new AuthenticationError("Action not allowed");
+        }
+      } else {
+        throw new UserInputError("Post not found");
+      }
     },
   },
 };
