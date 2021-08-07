@@ -1,6 +1,6 @@
 const Post = require("../../models/Post");
 const checkAuth = require("./checkAuth");
-const { AuthenticationError } = require("apollo-server");
+const { AuthenticationError, UserInputError } = require("apollo-server");
 
 module.exports = {
   Query: {
@@ -29,7 +29,14 @@ module.exports = {
   Mutation: {
     // ---------------------- CREATE POST --------------------------
     async createPost(_, { body }, context) {
+      // First validate the user
       const user = checkAuth(context);
+
+      // Then check if the post body is Empty
+      if (args.body.trim().length === 0) {
+        throw new UserInputError("The post cannot be empty");
+      }
+
       // If the checkAuth function does not throw an error and we actually get a user back
       const newPost = new Post({
         body,
