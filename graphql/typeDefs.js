@@ -1,5 +1,9 @@
 const { gql } = require("apollo-server");
 
+/*
+Standard GraphQL Typre definitions
+*/
+
 const td = gql`
   type Post {
     id: ID!

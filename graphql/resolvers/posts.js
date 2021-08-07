@@ -33,7 +33,7 @@ module.exports = {
       const user = checkAuth(context);
 
       // Then check if the post body is Empty
-      if (args.body.trim().length === 0) {
+      if (body.trim().length === 0) {
         throw new UserInputError("The post cannot be empty");
       }
 

@@ -4,6 +4,10 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 require("dotenv").config();
 
+/**
+ * This is just a helper function for checking if the given context (headers)
+ * match with the wanted token
+ */
 module.exports = (context) => {
   // Here the context will include many headers of which one is the auth
   const authHeader = context.req.headers.authorization;
