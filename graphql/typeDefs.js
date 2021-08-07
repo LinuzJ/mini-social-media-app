@@ -8,6 +8,8 @@ const td = gql`
     createdAt: String!
     comments: [Comment]!
     likes: [Like]!
+    likesAmount: Int!
+    commentsAmount: Int!
   }
   type Comment {
     id: ID!
