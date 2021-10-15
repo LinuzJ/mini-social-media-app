@@ -8,7 +8,6 @@ function MenuBar() {
 
   return (
     <Segment inverted>
-      {" "}
       <Menu inverted pointing secondary>
         <Menu.Item
           name="home"
