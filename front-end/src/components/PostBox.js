@@ -1,6 +1,25 @@
 import React from "react";
-import { Card, Icon, Label } from "semantic-ui-react";
+import { Card, Icon, Label, Image } from "semantic-ui-react";
+import moment from "moment";
 
-function PostBox(props) {}
+function PostBox(props) {
+  const { body, createdAt, id, username, likeAmount, commentAmount, likes } =
+    props.posts;
+  return (
+    <Card>
+      <Card.Content>
+        <Image
+          floated="right"
+          size="mini"
+          src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+        />
+        <Card.Header>{username}</Card.Header>
+        <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+        <Card.Description>{body}</Card.Description>
+      </Card.Content>
+      <Card.Content extra></Card.Content>
+    </Card>
+  );
+}
 
 export default PostBox;

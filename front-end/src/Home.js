@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
-import PostBox from "../components/ostBox";
+import PostBox from "./components/PostBox";
 
 const POSTS_QUERY = gql`
   query {
@@ -30,9 +30,7 @@ function Home() {
     loading,
     data: { getPosts: posts },
   } = useQuery(POSTS_QUERY);
-  if (data) {
-    console.log(data);
-  }
+
   return (
     <Grid columns={3} divided>
       <Grid.Row>
