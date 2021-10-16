@@ -1,10 +1,10 @@
 import React from "react";
-import { Card, Icon, Label, Image } from "semantic-ui-react";
+import { Card, Label, Image } from "semantic-ui-react";
 import moment from "moment";
 
 function PostBox(props) {
   const { body, createdAt, id, username, likeAmount, commentAmount, likes } =
-    props.posts;
+    props.post;
   return (
     <Card>
       <Card.Content>
