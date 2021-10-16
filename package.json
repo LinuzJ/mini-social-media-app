@@ -16,7 +16,8 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
-    "graphql": "^15.5.1",
+    "graphql": "^15.6.1",
+    "graphql-tag": "^2.12.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3"
   },
