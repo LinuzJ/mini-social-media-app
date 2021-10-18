@@ -28,7 +28,7 @@ const POSTS_QUERY = gql`
 function Home() {
   const { loading, data } = useQuery(POSTS_QUERY);
   return (
-    <Grid columns={3} divided>
+    <Grid columns={1}>
       <Grid.Row>
         <h1>POSTS</h1>
       </Grid.Row>
@@ -37,7 +37,7 @@ function Home() {
           <p>Loading Posts</p>
         ) : (
           data.getPosts.map((post) => (
-            <Grid.Column key={post.id}>
+            <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>
           ))
