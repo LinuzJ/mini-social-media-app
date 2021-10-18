@@ -29,7 +29,7 @@ function Home() {
   const { loading, data } = useQuery(POSTS_QUERY);
   return (
     <Grid columns={1}>
-      <Grid.Row>
+      <Grid.Row className="title">
         <h1>POSTS</h1>
       </Grid.Row>
       <Grid.Row>
