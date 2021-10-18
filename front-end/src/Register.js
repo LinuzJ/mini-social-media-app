@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Icon, Button, Form } from "semantic-ui-react";
 import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
+// Query for registering user, returns data and token
 const REGISTER_USER = gql`
   mutation register(
     $username: String!
@@ -21,7 +23,7 @@ const REGISTER_USER = gql`
       email
       username
       createdAt
-      token
+      authToken
     }
   }
 `;
@@ -38,16 +40,30 @@ function Register() {
   const onChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
+
+  // Add user
+  const [addUser, { loading }] = useMutation(REGISTER_USER, {
+    update(proxy, result) {
+      console.log(result);
+    },
+    variables: inputs,
+  });
+
   // onSubmit for registration
-  const onSubmit = (event) => {};
+  const onSubmit = (event) => {
+    event.preventDefault();
+    addUser();
+  };
+
   return (
-    <>
+    <div className="registration_container">
       <Form onSubmit={onSubmit} noValidate>
         <h1>
           <Form.Input
             label="Username"
             placeholder="exampleUsername123"
             name="username"
+            type="text"
             value={inputs.username}
             onChange={onChange}
           />
@@ -55,6 +71,7 @@ function Register() {
             label="Email"
             placeholder="example.email@emai.com"
             name="email"
+            type="email"
             value={inputs.email}
             onChange={onChange}
           />
@@ -62,6 +79,7 @@ function Register() {
             label="Password"
             placeholder="*********"
             name="password"
+            type="password"
             value={inputs.password}
             onChange={onChange}
           />
@@ -69,6 +87,7 @@ function Register() {
             label="Confirm Password"
             placeholder="*********"
             name="confirmPassword"
+            type="password"
             value={inputs.confirmPassword}
             onChange={onChange}
           />
@@ -78,7 +97,7 @@ function Register() {
           </Button>
         </h1>
       </Form>
-    </>
+    </div>
   );
 }
 
