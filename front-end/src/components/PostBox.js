@@ -6,6 +6,13 @@ import { Link } from "react-router-dom";
 function PostBox(props) {
   const { body, createdAt, id, username, likeAmount, commentAmount, likes } =
     props.post;
+
+  function likePost() {
+    console.log("Post liked");
+  }
+  function commentPost() {
+    console.log("Commented on Post");
+  }
   return (
     <Card fluid>
       <Card.Content>
@@ -24,19 +31,19 @@ function PostBox(props) {
         <div>
           <Button
             color="#6B8E23"
-            content="Like"
+            basic
             icon="thumbs up"
             label={{
               basic: true,
-              color: "#6B8E23",
+              color: "black",
               pointing: "left",
               content: likeAmount ? likeAmount : 0,
             }}
+            onClick={likePost}
           />
           <Button
             basic
             color="black"
-            content="Comment"
             icon="comment alternate"
             label={{
               as: "a",
@@ -45,6 +52,7 @@ function PostBox(props) {
               pointing: "left",
               content: commentAmount ? commentAmount : 0,
             }}
+            onClick={commentPost}
           />
         </div>
       </Card.Content>
