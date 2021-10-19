@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, Button, Form } from "semantic-ui-react";
+import { Icon, Button, Form, Message } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -36,6 +36,9 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+  // errors
+  const [errors, setErrors] = useState({});
+
   // onChange to change the values of the variables
   const onChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -46,6 +49,9 @@ function Register() {
     update(proxy, result) {
       console.log(result);
     },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    },
     variables: inputs,
   });
 
@@ -54,10 +60,10 @@ function Register() {
     event.preventDefault();
     addUser();
   };
-
+  console.log(errors);
   return (
     <div className="registration_container">
-      <Form onSubmit={onSubmit} noValidate>
+      <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>
           <Form.Input
             label="Username"
@@ -97,6 +103,16 @@ function Register() {
           </Button>
         </h1>
       </Form>
+      <Message negative>
+        <Message.Header>Mo bamba</Message.Header>
+        {!!Object.keys(errors).length && (
+          <ul className="list-error">
+            {Object.values(errors).map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        )}
+      </Message>
     </div>
   );
 }
