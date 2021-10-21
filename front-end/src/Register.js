@@ -103,13 +103,16 @@ function Register() {
           </Button>
         </h1>
       </Form>
-      <Message negative>
-        <Message.Header>Mo bamba</Message.Header>
-        <ul className="list-error">
-          {Object.keys(errors).length !== 0 &&
-            Object.values(errors).map((i) => <li key={i}>{i}</li>)}
-        </ul>
-      </Message>
+      {Object.keys(errors).length !== 0 && (
+        <Message negative>
+          <Message.Header>Mo bamba</Message.Header>
+          <ul className="list-error">
+            {Object.values(errors).map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </Message>
+      )}
     </div>
   );
 }
