@@ -68,6 +68,7 @@ function Register() {
   // Main return
   return (
     <div className="registration_container">
+      <h1>REGISTER</h1>
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>
           <Form.Input
