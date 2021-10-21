@@ -4,39 +4,29 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 // Query for registering user, returns data and token
-// const mkRegisterQuery = (varables) => gql`
-//   # mutation register(
-//   #   $username: String!
-//   #   $email: String!
-//   #   $password: String!
-//   #   $confirmPassword: String!
-//   # ) {
-//   #   register(
-//   #     registerInput: {
-//   #       username: $username
-//   #       email: $email
-//   #       password: $password
-//   #       confirmPassword: $confirmPassword
-//   #     }
-//   #   ) {
-//   #     id
-//   #     email
-//   #     username
-//   #     createdAt
-//   #     authToken
-//   #   }
-//   # }
-//   mutation register {
-//     register(registerInput: {variables}) {
-//       id
-//       email
-//       username
-//       createdAt
-//       authToken
-//     }
-//   }
-// `;
-
+const REGISTER_USER = gql`
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      registerInput: {
+        username: $username
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      id
+      email
+      username
+      createdAt
+      authToken
+    }
+  }
+`;
 function Register() {
   // State for input variables, used for login verification
   const [inputs, setInputs] = useState({
@@ -124,28 +114,4 @@ function Register() {
   );
 }
 
-// Query for registering user, returns data and token
-const REGISTER_USER = gql`
-  mutation register(
-    $username: String!
-    $email: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    register(
-      registerInput: {
-        username: $username
-        email: $email
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      username
-      createdAt
-      authToken
-    }
-  }
-`;
 export default Register;
