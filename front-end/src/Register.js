@@ -4,29 +4,38 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 // Query for registering user, returns data and token
-const REGISTER_USER = gql`
-  mutation register(
-    $username: String!
-    $email: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    register(
-      registerInput: {
-        username: $username
-        email: $email
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      username
-      createdAt
-      authToken
-    }
-  }
-`;
+// const mkRegisterQuery = (varables) => gql`
+//   # mutation register(
+//   #   $username: String!
+//   #   $email: String!
+//   #   $password: String!
+//   #   $confirmPassword: String!
+//   # ) {
+//   #   register(
+//   #     registerInput: {
+//   #       username: $username
+//   #       email: $email
+//   #       password: $password
+//   #       confirmPassword: $confirmPassword
+//   #     }
+//   #   ) {
+//   #     id
+//   #     email
+//   #     username
+//   #     createdAt
+//   #     authToken
+//   #   }
+//   # }
+//   mutation register {
+//     register(registerInput: {variables}) {
+//       id
+//       email
+//       username
+//       createdAt
+//       authToken
+//     }
+//   }
+// `;
 
 function Register() {
   // State for input variables, used for login verification
@@ -50,7 +59,7 @@ function Register() {
       console.log(result);
     },
     onError(err) {
-      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      setErrors(err.graphQLErrors[0].extensions.errors);
     },
     variables: inputs,
   });
@@ -58,9 +67,9 @@ function Register() {
   // onSubmit for registration
   const onSubmit = (event) => {
     event.preventDefault();
+    console.log("trying to update with: ", inputs);
     addUser();
   };
-  console.log(errors);
   return (
     <div className="registration_container">
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
@@ -105,16 +114,38 @@ function Register() {
       </Form>
       <Message negative>
         <Message.Header>Mo bamba</Message.Header>
-        {!!Object.keys(errors).length && (
-          <ul className="list-error">
-            {Object.values(errors).map((i) => (
-              <li key={i}>{i}</li>
-            ))}
-          </ul>
-        )}
+        <ul className="list-error">
+          {Object.values(errors).map((i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
       </Message>
     </div>
   );
 }
 
+// Query for registering user, returns data and token
+const REGISTER_USER = gql`
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      registerInput: {
+        username: $username
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      id
+      email
+      username
+      createdAt
+      authToken
+    }
+  }
+`;
 export default Register;
