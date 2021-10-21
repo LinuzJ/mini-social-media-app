@@ -61,6 +61,7 @@ function Register() {
     console.log("trying to update with: ", inputs);
     addUser();
   };
+  // Main return
   return (
     <div className="registration_container">
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
@@ -71,6 +72,7 @@ function Register() {
             name="username"
             type="text"
             value={inputs.username}
+            error={errors.username ? true : false}
             onChange={onChange}
           />
           <Form.Input
@@ -79,6 +81,7 @@ function Register() {
             name="email"
             type="email"
             value={inputs.email}
+            error={errors.email ? true : false}
             onChange={onChange}
           />
           <Form.Input
@@ -87,6 +90,7 @@ function Register() {
             name="password"
             type="password"
             value={inputs.password}
+            error={errors.password ? true : false}
             onChange={onChange}
           />
           <Form.Input
@@ -95,6 +99,7 @@ function Register() {
             name="confirmPassword"
             type="password"
             value={inputs.confirmPassword}
+            error={errors.confirmPassword ? true : false}
             onChange={onChange}
           />
           <Button icon labelPosition="right">
