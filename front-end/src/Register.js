@@ -38,6 +38,9 @@ function Register() {
   // errors
   const [errors, setErrors] = useState({});
 
+  //isGoodAwnser
+  const [recieved, setRecieved] = useState();
+
   // onChange to change the values of the variables
   const onChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -47,6 +50,7 @@ function Register() {
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(proxy, result) {
       console.log(result);
+      setRecieved(result.data.register.username);
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
@@ -108,6 +112,14 @@ function Register() {
           </Button>
         </h1>
       </Form>
+      {recieved ? (
+        <Message success>
+          <Message.Header>Success!</Message.Header>
+          <p>Successfully added user "{recieved}"</p>
+        </Message>
+      ) : (
+        ""
+      )}
       {Object.keys(errors).length !== 0 && (
         <Message negative>
           <Message.Header>Mo bamba</Message.Header>
