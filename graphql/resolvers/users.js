@@ -17,7 +17,12 @@ function makeToken(user) {
     { expiresIn: "1h" }
   );
 }
-function validateRegisterNewUser(username, email, password, confirmPassword) {
+async function validateRegisterNewUser(
+  username,
+  email,
+  password,
+  confirmPassword
+) {
   // Variable to store errors in registration
   const errors = {};
   const regExForEmail =
@@ -40,6 +45,12 @@ function validateRegisterNewUser(username, email, password, confirmPassword) {
     errors.password = "Password cannot be empty";
   } else if (password !== confirmPassword) {
     errors.confirmPassword = "Passwords must match";
+  }
+
+  // MAKE SURE USER != EXIST
+  const user = await User.findOne({ username });
+  if (user) {
+    errors.duplicateUsername = `The username ${username} is already taken`;
   }
 
   return {
@@ -89,6 +100,7 @@ module.exports = {
         errors.general = "Wrong password";
         throw new UserInputError("Wrong password", { errors });
       }
+
       // Create token
       const token = makeToken(user);
 
@@ -105,7 +117,7 @@ module.exports = {
       { registerInput: { username, email, password, confirmPassword } }
     ) {
       // VALIDATE USER DATA
-      const { valid, errors } = validateRegisterNewUser(
+      const { valid, errors } = await validateRegisterNewUser(
         username,
         email,
         password,
@@ -115,16 +127,7 @@ module.exports = {
       if (!valid) {
         throw new UserInputError("Errors", { errors });
       }
-      // MAKE SURE USER != EXIST
-      const user = await User.findOne({ username });
-      if (user) {
-        throw new UserInputError("Username is taken, ", {
-          errors: {
-            username: "This username is taken",
-            name: user,
-          },
-        });
-      }
+
       // HASH PASSRD AND CREATE AUTH TOKEN
       password = await bcrypt.hash(password, 10);
 

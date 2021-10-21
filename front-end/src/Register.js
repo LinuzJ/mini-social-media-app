@@ -50,6 +50,7 @@ function Register() {
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
+      console.log(errors);
     },
     variables: inputs,
   });
@@ -105,9 +106,8 @@ function Register() {
       <Message negative>
         <Message.Header>Mo bamba</Message.Header>
         <ul className="list-error">
-          {Object.values(errors).map((i) => (
-            <li key={i}>{i}</li>
-          ))}
+          {Object.keys(errors).length !== 0 &&
+            Object.values(errors).map((i) => <li key={i}>{i}</li>)}
         </ul>
       </Message>
     </div>
