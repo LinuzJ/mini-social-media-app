@@ -27,7 +27,7 @@ const REGISTER_USER = gql`
     }
   }
 `;
-function Register() {
+function Register(props) {
   // State for input variables, used for login verification
   const [inputs, setInputs] = useState({
     email: "",
@@ -48,9 +48,10 @@ function Register() {
 
   // Add user
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update(proxy, result) {
+    update(_, result) {
       console.log(result);
       setRecieved(result.data.register.username);
+      props.history.push("");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
