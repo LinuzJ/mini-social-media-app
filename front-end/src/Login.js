@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Message } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
+import { AuthContext } from "./context/auth";
 
 // Query for registering user, returns data and token
 const LOGIN = gql`
@@ -16,6 +17,8 @@ const LOGIN = gql`
   }
 `;
 function Login(props) {
+  // global context for login
+  const context = useContext(AuthContext);
   // State for input variables, used for login verification
   const [inputs, setInputs] = useState({
     username: "",
@@ -32,8 +35,8 @@ function Login(props) {
   // Add user
   const [login, { loading }] = useMutation(LOGIN, {
     update(_, result) {
-      console.log(result);
-      props.history.push("");
+      context.login(result.data.login);
+      props.history.push("/");
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);

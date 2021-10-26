@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Icon, Button, Form, Message } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-
+import { AuthContext } from "./context/auth";
 // Query for registering user, returns data and token
 const REGISTER_USER = gql`
   mutation register(
@@ -28,6 +28,8 @@ const REGISTER_USER = gql`
   }
 `;
 function Register(props) {
+  // global context for login
+  const context = useContext(AuthContext);
   // State for input variables, used for login verification
   const [inputs, setInputs] = useState({
     email: "",
@@ -49,8 +51,8 @@ function Register(props) {
   // Add user
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, result) {
-      console.log(result);
       setRecieved(result.data.register.username);
+      context.login(result.data.login);
       props.history.push("");
     },
     onError(err) {
