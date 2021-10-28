@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
-import PostBox from "./components/PostBox";
+import PostBox from "../components/PostBox";
 
 const POSTS_QUERY = gql`
   query {
@@ -25,7 +25,7 @@ const POSTS_QUERY = gql`
     }
   }
 `;
-function Home() {
+function Posts() {
   const { loading, data } = useQuery(POSTS_QUERY);
   return (
     <Grid columns={1}>
@@ -47,4 +47,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Posts;

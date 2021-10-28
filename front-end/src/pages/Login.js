@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form, Button, Message } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { AuthContext } from "./context/auth";
+import { AuthContext } from "../context/auth";
 
 // Query for registering user, returns data and token
 const LOGIN = gql`

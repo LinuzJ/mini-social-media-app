@@ -26,3 +26,6 @@
   width: 400px;
   margin: auto;
 }
+.menuItem {
+  margin: auto !important;
+}

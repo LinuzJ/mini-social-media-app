@@ -20,8 +20,27 @@ function MenuBar() {
   const mainBar = context.user ? (
     <Segment inverted>
       <Menu inverted pointing secondary>
-        <Menu.Item name={`Welcome ${context.user.username}!`} active />
-        <Menu.Item name="Logout" onClick={context.logout} />
+        <Menu.Item
+          name={`home`}
+          active={activeItem === "home"}
+          onClick={handleItemClick}
+          as={Link}
+          to="/"
+          className="menuItem"
+        />
+        <Menu.Item
+          name="my posts"
+          active={activeItem === "my posts"}
+          onClick={handleItemClick}
+          as={Link}
+          to="/posts"
+          className="menuItem"
+        />
+        <Menu.Item
+          name="logout"
+          onClick={context.logout}
+          className="menuItem"
+        />
       </Menu>
     </Segment>
   ) : (
@@ -33,6 +52,7 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/"
+          className="menuItem"
         />
         <Menu.Item
           name="register"
@@ -40,6 +60,7 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/register"
+          className="menuItem"
         />
         <Menu.Item
           name="login"
@@ -47,6 +68,7 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/login"
+          className="menuItem"
         />
       </Menu>
     </Segment>
