@@ -55,19 +55,19 @@ function MenuBar() {
           className="menuItem"
         />
         <Menu.Item
-          name="register"
-          active={activeItem === "register"}
-          onClick={handleItemClick}
-          as={Link}
-          to="/register"
-          className="menuItem"
-        />
-        <Menu.Item
           name="login"
           active={activeItem === "login"}
           onClick={handleItemClick}
           as={Link}
           to="/login"
+          className="menuItem"
+        />
+        <Menu.Item
+          name="register"
+          active={activeItem === "register"}
+          onClick={handleItemClick}
+          as={Link}
+          to="/register"
           className="menuItem"
         />
       </Menu>

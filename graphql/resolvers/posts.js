@@ -24,6 +24,16 @@ module.exports = {
         throw new Error(e);
       }
     },
+    async getPostsOf(_, { user }) {
+      try {
+        const recieved = await Post.find({ username: { $eq: user } }).sort({
+          createdAt: -1,
+        });
+        return recieved;
+      } catch (e) {
+        throw new Error(e);
+      }
+    },
   },
   // THEN MUTATIONS
   Mutation: {

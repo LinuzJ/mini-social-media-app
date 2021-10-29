@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
 import PostBox from "../components/PostBox";
+import { AuthContext } from "../context/auth";
 
 const POSTS_QUERY = gql`
-  query {
-    getPosts {
+  query getPostsOf($user: String!) {
+    getPostsOf(user: $user) {
       id
       body
       createdAt
@@ -27,6 +28,9 @@ const POSTS_QUERY = gql`
 `;
 function Posts() {
   const { loading, data } = useQuery(POSTS_QUERY);
+
+  const context = useContext(AuthContext);
+
   return (
     <Grid columns={1}>
       <Grid.Row className="title">
@@ -36,7 +40,7 @@ function Posts() {
         {loading ? (
           <p>Loading Posts</p>
         ) : (
-          data.getPosts.map((post) => (
+          data.getPostsOf(context.user).map((post) => (
             <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>
