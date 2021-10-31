@@ -4,30 +4,10 @@ import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
 import PostBox from "../components/PostBox";
 import { AuthContext } from "../context/auth";
+import queries from "../utils/queries";
 
-const POSTS_QUERY = gql`
-  query getPostsOf($user: String!) {
-    getPostsOf(user: $user) {
-      id
-      body
-      createdAt
-      username
-      likesAmount
-      likes {
-        username
-      }
-      commentsAmount
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-    }
-  }
-`;
 function Posts() {
-  const { loading, data } = useQuery(POSTS_QUERY);
+  const { loading, data } = useQuery(queries.GET_POSTSOF_QUERY);
 
   const context = useContext(AuthContext);
 

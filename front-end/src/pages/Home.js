@@ -4,30 +4,10 @@ import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
 import PostBox from "../components/PostBox";
 import PostWrite from "../components/PostWrite";
+import queries from "../utils/queries";
 
-const POSTS_QUERY = gql`
-  query {
-    getPosts {
-      id
-      body
-      createdAt
-      username
-      likesAmount
-      likes {
-        username
-      }
-      commentsAmount
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-    }
-  }
-`;
 function Home() {
-  const { loading, data } = useQuery(POSTS_QUERY);
+  const { loading, data } = useQuery(queries.GET_POSTS_QUERY);
   return (
     <Grid columns={1}>
       <Grid.Row className="title">
