@@ -9,7 +9,7 @@ import Posts from "./pages/Posts";
 import MenuBar from "./components/MenuBar";
 import { Container } from "semantic-ui-react";
 import { AuthProvider } from "./context/auth";
-import AuthRoute from "./utils/AuthRoute";
+import RouteWithAuth from "./utils/RouteWithAuth";
 
 function App() {
   return (
@@ -18,13 +18,12 @@ function App() {
         <Router>
           <MenuBar />
           <Route exact path="/" component={Home} />
-          <AuthRoute exact path="/register" component={Register} />
-          <AuthRoute exact path="/login" component={Login} />
+          <RouteWithAuth exact path="/login" component={Login} />
+          <RouteWithAuth exact path="/register" component={Register} />
           <Route exact path="/posts" component={Posts} />
         </Router>
       </Container>
     </AuthProvider>
   );
 }
-
 export default App;
