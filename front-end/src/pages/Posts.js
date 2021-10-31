@@ -39,12 +39,14 @@ function Posts() {
       <Grid.Row>
         {loading ? (
           <p>Loading Posts</p>
-        ) : (
+        ) : data ? (
           data.getPostsOf(context.user).map((post) => (
             <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>
           ))
+        ) : (
+          <p style={{ margin: "auto" }}>You have not added any posts!</p>
         )}
       </Grid.Row>
     </Grid>
