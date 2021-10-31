@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Grid } from "semantic-ui-react";
 import PostBox from "../components/PostBox";
+import PostWrite from "../components/PostWrite";
 
 const POSTS_QUERY = gql`
   query {
@@ -31,6 +32,9 @@ function Home() {
     <Grid columns={1}>
       <Grid.Row className="title">
         <h1>POSTS</h1>
+      </Grid.Row>
+      <Grid.Row>
+        <PostWrite />
       </Grid.Row>
       <Grid.Row>
         {loading ? (
