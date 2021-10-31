@@ -9,6 +9,7 @@ import Posts from "./pages/Posts";
 import MenuBar from "./components/MenuBar";
 import { Container } from "semantic-ui-react";
 import { AuthProvider } from "./context/auth";
+import AuthRoute from "./utils/AuthRoute";
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Router>
           <MenuBar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
+          <AuthRoute exact path="/login" component={Login} />
           <Route exact path="/posts" component={Posts} />
         </Router>
       </Container>

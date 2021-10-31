@@ -35,12 +35,14 @@ function Home() {
       <Grid.Row>
         {loading ? (
           <p>Loading Posts</p>
-        ) : (
+        ) : data ? (
           data.getPosts.map((post) => (
             <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>
           ))
+        ) : (
+          <p style={{ margin: "auto" }}>No posts added!</p>
         )}
       </Grid.Row>
     </Grid>
