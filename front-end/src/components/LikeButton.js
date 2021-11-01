@@ -5,9 +5,11 @@ import { Button } from "semantic-ui-react";
 import queries from "../utils/queries";
 
 const LikeButton = (props) => {
-  const { id, likeAmount, likes } = props.post;
-
+  // Extract data from props
+  const { id, likesAmount, likes } = props.post;
   const { user } = props;
+
+  // state for if liked
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
@@ -29,27 +31,27 @@ const LikeButton = (props) => {
     liked ? (
       // If this user has liked
       <Button
-        color="#6B8E23"
+        color="facebook"
         icon="thumbs up"
         label={{
           basic: true,
           color: "black",
           pointing: "left",
-          content: likeAmount ? likeAmount : 0,
+          content: likesAmount ? likesAmount : 0,
         }}
         onClick={likePost}
       />
     ) : (
       // If this user has not liked
       <Button
-        color="#6B8E23"
+        color="facebook"
         basic
         icon="thumbs up"
         label={{
           basic: true,
           color: "black",
           pointing: "left",
-          content: likeAmount ? likeAmount : 0,
+          content: likesAmount ? likesAmount : 0,
         }}
         onClick={likePost}
       />
@@ -59,14 +61,14 @@ const LikeButton = (props) => {
     <Button
       as={Link}
       to="/login"
-      color="#6B8E23"
+      color="facebook"
       basic
       icon="thumbs up"
       label={{
         basic: true,
         color: "black",
         pointing: "left",
-        content: likeAmount ? likeAmount : 0,
+        content: likesAmount ? likesAmount : 0,
       }}
       onClick={likePost}
     />

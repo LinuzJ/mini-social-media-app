@@ -74,7 +74,7 @@ const queries = {
           id
           username
         }
-        likeAmount
+        likesAmount
       }
     }
   `,

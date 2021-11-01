@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
 
 function PostBox(props) {
-  const { body, createdAt, id, username, likeAmount, commentAmount, likes } =
+  const { body, createdAt, id, username, likesAmount, commentAmount, likes } =
     props.post;
 
   // Global context
@@ -28,7 +28,7 @@ function PostBox(props) {
       </Card.Content>
       <Card.Content extra>
         <div>
-          <LikeButton user={context.user} post={{ id, likes, likeAmount }} />
+          <LikeButton user={context.user} post={{ id, likes, likesAmount }} />
           <Button
             basic
             color="black"
