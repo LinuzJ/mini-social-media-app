@@ -42,23 +42,49 @@ const PostWrite = (props) => {
   // onSubmit for posting
   const onSubmit = (event) => {
     event.preventDefault();
+    setShowForm();
     post();
   };
 
-  return (
-    <Form onSubmit={onSubmit}>
-      <h2>Create a post:</h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="Write your post here!"
-          name="body"
-          onChange={onChange}
-          value={inputs.body}
-        />
-        <Button type="submit">Post</Button>
-      </Form.Field>
-    </Form>
+  // State to determine if post form is shown or not
+  const [showForm, setShowForm] = useState();
+
+  const dispay = context.user ? (
+    showForm ? (
+      <div style={{ margin: "auto" }}>
+        <Form onSubmit={onSubmit}>
+          <h2>Create a post:</h2>
+          <Form.Field>
+            <Form.Input
+              placeholder="Write your post here!"
+              name="body"
+              onChange={onChange}
+              value={inputs.body}
+              style={{
+                width: "200px",
+                heigh: "200px",
+              }}
+            />
+            <Button type="submit">Post</Button>
+          </Form.Field>
+        </Form>
+      </div>
+    ) : (
+      <div style={{ margin: "auto" }}>
+        <Button
+          onClick={() => {
+            setShowForm(true);
+          }}
+        >
+          Create Post
+        </Button>
+      </div>
+    )
+  ) : (
+    <div style={{ margin: "auto" }}>Login to create posts!</div>
   );
+  // Return
+  return dispay;
 };
 
 export default PostWrite;
