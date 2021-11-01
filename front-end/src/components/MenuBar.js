@@ -52,7 +52,6 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/"
-          className="menuItem"
         />
         <Menu.Item
           name="login"
@@ -60,7 +59,6 @@ function MenuBar() {
           onClick={handleItemClick}
           as={Link}
           to="/login"
-          className="menuItem"
         />
         <Menu.Item
           name="register"

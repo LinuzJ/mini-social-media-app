@@ -66,6 +66,18 @@ const queries = {
       }
     }
   `,
+  LIKE_POST_QUERY: gql`
+    mutation likePost($postId: ID!) {
+      likePost(postId: $postId) {
+        id
+        likes {
+          id
+          username
+        }
+        likeAmount
+      }
+    }
+  `,
 };
 
 export default queries;

@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "../context/auth";
-import { ValuesOfCorrectTypeRule } from "graphql";
 import queries from "../utils/queries";
 
 const PostWrite = (props) => {
@@ -13,8 +11,6 @@ const PostWrite = (props) => {
   const [inputs, setInputs] = useState({
     body: "",
   });
-  // Errors
-  const [errors, setErrors] = useState({});
 
   const onChange = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });

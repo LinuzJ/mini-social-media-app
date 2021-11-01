@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { Grid } from "semantic-ui-react";
+import { Grid, Transition } from "semantic-ui-react";
 import PostBox from "../components/PostBox";
 import PostWrite from "../components/PostWrite";
 import queries from "../utils/queries";
@@ -20,11 +19,13 @@ function Home() {
         {loading ? (
           <p>Loading Posts</p>
         ) : data ? (
-          data.getPosts.map((post) => (
-            <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
-              <PostBox post={post} />
-            </Grid.Column>
-          ))
+          <Transition.Group animation={"drop"}>
+            {data.getPosts.map((post) => (
+              <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
+                <PostBox post={post} />
+              </Grid.Column>
+            ))}
+          </Transition.Group>
         ) : (
           <p style={{ margin: "auto" }}>No posts added!</p>
         )}
