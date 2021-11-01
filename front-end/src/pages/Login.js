@@ -40,7 +40,6 @@ function Login(props) {
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.errors);
-      console.log(errors);
     },
     variables: inputs,
   });
@@ -77,7 +76,7 @@ function Login(props) {
       </Form>
       {Object.keys(errors).length !== 0 && (
         <Message negative>
-          <Message.Header>Mo bamba</Message.Header>
+          <Message.Header>Error</Message.Header>
           <ul className="list-error">
             {Object.values(errors).map((i) => (
               <li key={i}>{i}</li>

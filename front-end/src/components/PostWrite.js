@@ -39,6 +39,9 @@ const PostWrite = (props) => {
     },
   });
 
+  // State to determine if post form is shown or not
+  const [showForm, setShowForm] = useState();
+
   // onSubmit for posting
   const onSubmit = (event) => {
     event.preventDefault();
@@ -46,44 +49,59 @@ const PostWrite = (props) => {
     post();
   };
 
-  // State to determine if post form is shown or not
-  const [showForm, setShowForm] = useState();
+  const form = (
+    <div style={{ margin: "auto" }}>
+      <Form onSubmit={onSubmit}>
+        <h2>Create a post:</h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="Write your post here!"
+            name="body"
+            onChange={onChange}
+            value={inputs.body}
+            style={{
+              width: "200px",
+              heigh: "200px",
+            }}
+            error={error ? true : false}
+          />
+          <Button type="submit">Post</Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+
+  const button = (
+    <div style={{ margin: "auto" }}>
+      <Button
+        onClick={() => {
+          setShowForm(true);
+        }}
+      >
+        Create Post
+      </Button>
+    </div>
+  );
 
   const dispay = context.user ? (
-    showForm ? (
-      <div style={{ margin: "auto" }}>
-        <Form onSubmit={onSubmit}>
-          <h2>Create a post:</h2>
-          <Form.Field>
-            <Form.Input
-              placeholder="Write your post here!"
-              name="body"
-              onChange={onChange}
-              value={inputs.body}
-              style={{
-                width: "200px",
-                heigh: "200px",
-              }}
-            />
-            <Button type="submit">Post</Button>
-          </Form.Field>
-        </Form>
-      </div>
+    error ? (
+      form
+    ) : showForm ? (
+      form
     ) : (
-      <div style={{ margin: "auto" }}>
-        <Button
-          onClick={() => {
-            setShowForm(true);
-          }}
-        >
-          Create Post
-        </Button>
-      </div>
+      button
     )
   ) : (
     <div style={{ margin: "auto" }}>Login to create posts!</div>
   );
-  // Return
+
   return dispay;
 };
 
