@@ -1,3 +1,1 @@
-Basic README, not done
-
-bcrypt jsonwebtoken
+NOT FINISHED
