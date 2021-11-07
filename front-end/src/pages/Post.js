@@ -14,6 +14,7 @@ import {
   Card,
   CardContent,
   Image,
+  Button,
 } from "semantic-ui-react";
 import moment from "moment";
 import LikeButton from "../components/LikeButton";
@@ -59,6 +60,23 @@ const Post = (props) => {
               <hr />
               <Card.Content extra>
                 <LikeButton user={context.user} post={post} />
+                <Button
+                  as="div"
+                  labelPosition="right"
+                  onClick={() => console.log("Comment")}
+                >
+                  <Button
+                    basic
+                    icon="comment alternate"
+                    label={{
+                      as: "a",
+                      basic: true,
+                      color: "black",
+                      pointing: "left",
+                      content: post.commentsAmount ? post.commentAmount : 0,
+                    }}
+                  />
+                </Button>
               </Card.Content>
             </Card>
           </Grid.Column>

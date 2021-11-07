@@ -31,7 +31,6 @@ function PostBox(props) {
           <LikeButton user={context.user} post={{ id, likes, likesAmount }} />
           <Button
             basic
-            color="black"
             icon="comment alternate"
             label={{
               as: "a",
