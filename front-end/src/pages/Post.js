@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import queries from "../utils/queries";
+
+import { AuthContext } from "../context/auth";
 
 // Style
 import {
@@ -14,11 +16,12 @@ import {
   Image,
 } from "semantic-ui-react";
 import moment from "moment";
+import LikeButton from "../components/LikeButton";
 
 const Post = (props) => {
   // Get post id from url
   const postId = props.match.params.PostId;
-
+  const context = useContext(AuthContext);
   // query
   const { loading, data } = useQuery(queries.GET_POST_QUERY, {
     variables: {
@@ -52,6 +55,10 @@ const Post = (props) => {
                 <Card.Header>{post.username}</Card.Header>
                 <Card.Meta>{moment(post.createdAt).fromNow()}</Card.Meta>
                 <Card.Description>{post.body}</Card.Description>
+              </Card.Content>
+              <hr />
+              <Card.Content extra>
+                <LikeButton user={context.user} post={post} />
               </Card.Content>
             </Card>
           </Grid.Column>
