@@ -22,7 +22,7 @@ function App() {
           <RouteWithAuth exact path="/login" component={Login} />
           <RouteWithAuth exact path="/register" component={Register} />
           <Route exact path="/posts" component={Posts} />
-          <Route exact path="/post:PostId" component={Post} />
+          <Route exact path="/posts/:PostId" component={Post} />
         </Router>
       </Container>
     </AuthProvider>

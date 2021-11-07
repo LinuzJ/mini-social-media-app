@@ -78,6 +78,27 @@ const queries = {
       }
     }
   `,
+  GET_POST_QUERY: gql`
+    query ($postId: ID!) {
+      getPost(postId: $postId) {
+        id
+        body
+        createdAt
+        username
+        likesAmount
+        likes {
+          username
+        }
+        commentsAmount
+        comments {
+          id
+          username
+          createdAt
+          body
+        }
+      }
+    }
+  `,
 };
 
 export default queries;
