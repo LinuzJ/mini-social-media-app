@@ -18,6 +18,7 @@ import {
 } from "semantic-ui-react";
 import moment from "moment";
 import LikeButton from "../components/LikeButton";
+import DeleteButton from "../components/DeleteButton";
 
 const Post = (props) => {
   // Get post id from url
@@ -39,7 +40,15 @@ const Post = (props) => {
       </Dimmer>
     );
   } else {
-    const post = data.getPost;
+    const {
+      id,
+      username,
+      createdAt,
+      body,
+      commentsAmount,
+      likesAmount,
+      likes,
+    } = data.getPost;
     layout = (
       <Grid>
         <Grid.Row>
@@ -53,13 +62,16 @@ const Post = (props) => {
           <Grid.Column width={10}>
             <Card fluid>
               <Card.Content>
-                <Card.Header>{post.username}</Card.Header>
-                <Card.Meta>{moment(post.createdAt).fromNow()}</Card.Meta>
-                <Card.Description>{post.body}</Card.Description>
+                <Card.Header>{username}</Card.Header>
+                <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+                <Card.Description>{body}</Card.Description>
               </Card.Content>
               <hr />
               <Card.Content extra>
-                <LikeButton user={context.user} post={post} />
+                <LikeButton
+                  user={context.user}
+                  post={{ id, likes, likesAmount }}
+                />
                 <Button
                   as="div"
                   labelPosition="right"
@@ -73,10 +85,11 @@ const Post = (props) => {
                       basic: true,
                       color: "black",
                       pointing: "left",
-                      content: post.commentsAmount ? post.commentAmount : 0,
+                      content: commentsAmount ? commentsAmount : 0,
                     }}
                   />
                 </Button>
+                <DeleteButton user={context.user} post={{ id, username }} />
               </Card.Content>
             </Card>
           </Grid.Column>
