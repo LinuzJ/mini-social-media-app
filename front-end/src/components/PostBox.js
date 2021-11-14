@@ -4,6 +4,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton";
 
 function PostBox(props) {
   const { body, createdAt, id, username, likesAmount, commentAmount, likes } =
@@ -42,17 +43,7 @@ function PostBox(props) {
             as={Link}
             to={`/posts/${id}`}
           />
-          {context.user && context.user.username === username && (
-            <Button
-              as="div"
-              onClick={() => {
-                console.log("Deleted post");
-              }}
-              floated="right"
-            >
-              <Icon name="delete" style={{ margin: 0 }} />
-            </Button>
-          )}
+          <DeleteButton user={context.user} post={{ id, username }} />
         </div>
       </Card.Content>
     </Card>

@@ -68,9 +68,11 @@ module.exports = {
       // Then make sure the user is the author of the post, then delete the post
       try {
         const post = await Post.findById(postId);
+        const postID = post.id;
         if (user.username === post.username) {
           await post.delete();
-          return "Post deleted!";
+
+          return `Post ${postID} deleted!`;
         } else {
           throw new AuthenticationError("This is not your post!");
         }

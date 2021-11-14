@@ -99,6 +99,11 @@ const queries = {
       }
     }
   `,
+  DELETE_POST_QUERY: gql`
+    mutation deletePost($postId: ID!) {
+      deletePost(postId: $postId)
+    }
+  `,
 };
 
 export default queries;
