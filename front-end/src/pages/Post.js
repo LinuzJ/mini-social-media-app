@@ -19,6 +19,7 @@ import {
 import moment from "moment";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
+import CreateComment from "../components/CreateComment";
 
 const Post = (props) => {
   // Get post id from url
@@ -93,6 +94,9 @@ const Post = (props) => {
               </Card.Content>
             </Card>
           </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <CreateComment />
         </Grid.Row>
       </Grid>
     );
