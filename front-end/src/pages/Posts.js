@@ -6,10 +6,14 @@ import { AuthContext } from "../context/auth";
 import queries from "../utils/queries";
 
 function Posts() {
-  const { loading, data } = useQuery(queries.GET_POSTSOF_QUERY);
-
   const context = useContext(AuthContext);
 
+  const { loading, data } = useQuery(queries.GET_POSTSOF_QUERY, {
+    variables: {
+      user: context.user.username,
+    },
+  });
+  const posts = data.getPostsOf;
   return (
     <Grid columns={1}>
       <Grid.Row className="title">
@@ -19,7 +23,7 @@ function Posts() {
         {loading ? (
           <p>Loading Posts</p>
         ) : data ? (
-          data.getPostsOf(context.user).map((post) => (
+          posts.map((post) => (
             <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>
