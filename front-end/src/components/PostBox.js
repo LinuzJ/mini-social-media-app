@@ -7,12 +7,11 @@ import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 
 function PostBox(props) {
-  const { body, createdAt, id, username, likesAmount, commentAmount, likes } =
+  const { body, createdAt, id, username, likesAmount, commentsAmount, likes } =
     props.post;
 
   // Global context
   const context = useContext(AuthContext);
-
   return (
     <Card fluid>
       <Card.Content>
@@ -38,7 +37,7 @@ function PostBox(props) {
               basic: true,
               color: "black",
               pointing: "left",
-              content: commentAmount ? commentAmount : 0,
+              content: commentsAmount ? commentsAmount : 0,
             }}
             as={Link}
             to={`/posts/${id}`}

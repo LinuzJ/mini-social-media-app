@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import queries from "../utils/queries";
 
@@ -31,7 +31,6 @@ const Post = (props) => {
       postId,
     },
   });
-
   let layout; // init layour variable
 
   if (loading) {
@@ -49,6 +48,7 @@ const Post = (props) => {
       commentsAmount,
       likesAmount,
       likes,
+      comments,
     } = data.getPost;
     layout = (
       <Grid>
@@ -99,6 +99,24 @@ const Post = (props) => {
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={10} center>
             <CreateComment id={postId} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={10} center>
+            {comments.map((comment) => (
+              <Card fluid key={comment.id}>
+                <Card.Content>
+                  <Card.Header>{comment.username}</Card.Header>
+                  <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
+                  <Card.Description>{comment.body}</Card.Description>
+                  {context.user &&
+                    context.user.username === comment.username && (
+                      <p>insert delete here</p>
+                    )}
+                </Card.Content>
+              </Card>
+            ))}
           </Grid.Column>
         </Grid.Row>
       </Grid>
