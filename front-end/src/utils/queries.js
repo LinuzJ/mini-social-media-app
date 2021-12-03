@@ -104,6 +104,23 @@ const queries = {
       deletePost(postId: $postId)
     }
   `,
+  SEND_COMMENT_MUTATION: gql`
+    mutation createComment($postId: String!, $body: String!) {
+      createComment(postId: $postId, body: $body) {
+        id
+        body
+        createdAt
+        username
+        commentsAmount
+        comments {
+          id
+          username
+          createdAt
+          body
+        }
+      }
+    }
+  `,
 };
 
 export default queries;

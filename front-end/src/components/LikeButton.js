@@ -19,7 +19,6 @@ const LikeButton = (props) => {
       setLiked(false);
     }
   }, [user, likes]);
-
   // Mutation for like
   const [likePost] = useMutation(queries.LIKE_POST_QUERY, {
     variables: { postId: id },

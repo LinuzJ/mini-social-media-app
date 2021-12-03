@@ -98,7 +98,7 @@ const Post = (props) => {
         <Grid.Row>
           <Grid.Column width={2}></Grid.Column>
           <Grid.Column width={10} center>
-            <CreateComment />
+            <CreateComment id={postId} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
