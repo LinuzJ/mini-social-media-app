@@ -29,3 +29,7 @@
 .menuItem {
   float: right !important;
 }
+
+.comment-box {
+  padding: 2%;
+}

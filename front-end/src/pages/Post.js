@@ -96,7 +96,10 @@ const Post = (props) => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <CreateComment />
+          <Grid.Column width={2}></Grid.Column>
+          <Grid.Column width={10} center>
+            <CreateComment />
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     );

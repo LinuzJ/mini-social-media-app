@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/styles.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "semantic-ui-css/semantic.min.css";
