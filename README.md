@@ -8,7 +8,6 @@ Proof of concept twitter-like social media app built with the MERN stack. Featur
 
 - [Javascript](https://www.javascript.com/)
 - [React](https://reactjs.org/)
-- [NodeJS](https://nodejs.org/en/)
 - [GraphQL](https://graphql.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Apollo server](https://www.apollographql.com/docs/apollo-server/)
@@ -47,7 +46,6 @@ To run this locally you have to create your own database and create an .env file
 
 ### Prerequisites
 
-- Node.js
 - npm
 
 ### Installation
