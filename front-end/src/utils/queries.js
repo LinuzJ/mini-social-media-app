@@ -46,8 +46,8 @@ const queries = {
     }
   `,
   GET_POSTSOF_QUERY: gql`
-    query getPostsOf($user: String!) {
-      getPostsOf(user: $user) {
+    query getPostsOf($username: String!) {
+      getPostsOf(username: $username) {
         id
         body
         createdAt

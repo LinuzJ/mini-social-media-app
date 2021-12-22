@@ -57,7 +57,7 @@ const Post = (props) => {
           <Grid.Column width={2}>
             <Image
               floated="right"
-              size="mini"
+              size="medium"
               src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
             />
           </Grid.Column>

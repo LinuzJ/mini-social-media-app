@@ -10,10 +10,10 @@ function Posts() {
 
   const { loading, data } = useQuery(queries.GET_POSTSOF_QUERY, {
     variables: {
-      user: context.user.username,
+      username: context.user.username,
     },
   });
-  const posts = data.getPostsOf;
+
   return (
     <Grid columns={1}>
       <Grid.Row className="title">
@@ -23,7 +23,7 @@ function Posts() {
         {loading ? (
           <p>Loading Posts</p>
         ) : data ? (
-          posts.map((post) => (
+          data.getPostsOf.map((post) => (
             <Grid.Column key={post.id} style={{ marginBottom: 10 }}>
               <PostBox post={post} />
             </Grid.Column>

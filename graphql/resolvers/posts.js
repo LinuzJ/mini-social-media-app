@@ -24,9 +24,9 @@ module.exports = {
         throw new Error(e);
       }
     },
-    async getPostsOf(_, { user }) {
+    async getPostsOf(_, { username }) {
       try {
-        const recieved = await Post.find({ username: { $eq: user } }).sort({
+        const recieved = await Post.find({ username: { $eq: username } }).sort({
           createdAt: -1,
         });
         return recieved;

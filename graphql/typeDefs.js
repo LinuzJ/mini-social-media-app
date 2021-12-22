@@ -43,7 +43,7 @@ const td = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
-    getPostsOf(user: String): [Post]
+    getPostsOf(username: String): [Post]
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
