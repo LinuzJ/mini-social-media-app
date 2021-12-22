@@ -42,8 +42,7 @@ module.exports = {
 
       if (post) {
         // Find the comment that we are looking for from within the post object
-        const commentIdx = post.comments.indexOf((x) => c.id === commentId);
-
+        const commentIdx = post.comments.findIndex((x) => x.id === commentId);
         // If the the creator of the comment matches the comment objects user
         if (post.comments[commentIdx].username === user.username) {
           // Delete post and save -> return post object

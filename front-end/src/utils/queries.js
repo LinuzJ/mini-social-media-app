@@ -104,6 +104,13 @@ const queries = {
       deletePost(postId: $postId)
     }
   `,
+  DELETE_COMMENT_QUERY: gql`
+    mutation deleteComment($postId: ID!, $commentId: ID!) {
+      deleteComment(postId: $postId, commentId: $commentId) {
+        id
+      }
+    }
+  `,
   SEND_COMMENT_MUTATION: gql`
     mutation createComment($postId: String!, $body: String!) {
       createComment(postId: $postId, body: $body) {

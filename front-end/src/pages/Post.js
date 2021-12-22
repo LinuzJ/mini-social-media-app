@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
+import DeleteCommentButton from "../components/DeleteCommentButton";
 import queries from "../utils/queries";
 
 import { AuthContext } from "../context/auth";
@@ -112,7 +113,12 @@ const Post = (props) => {
                   <Card.Description>{comment.body}</Card.Description>
                   {context.user &&
                     context.user.username === comment.username && (
-                      <p>insert delete here</p>
+                      <DeleteCommentButton
+                        post={id}
+                        username={comment.username}
+                        comment={comment.id}
+                        user={context.user}
+                      />
                     )}
                 </Card.Content>
               </Card>
