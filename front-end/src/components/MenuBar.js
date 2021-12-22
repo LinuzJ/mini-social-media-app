@@ -39,6 +39,8 @@ function MenuBar() {
         <Menu.Item
           name="logout"
           onClick={context.logout}
+          as={Link}
+          to="/"
           className="menuItem"
         />
       </Menu>
