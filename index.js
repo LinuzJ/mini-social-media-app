@@ -27,4 +27,5 @@ mongoose
   })
   .then((res) => {
     console.log(`Server is up and running at ${res.url}`);
-  });
+  })
+  .catch((err) => console.log(err));
