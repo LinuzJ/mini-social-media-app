@@ -66,7 +66,7 @@ function Login(props) {
           label="Password"
           placeholder="Password"
           name="password"
-          type="text"
+          type="password"
           value={inputs.password}
           error={errors.password ? true : false}
           onChange={onChange}

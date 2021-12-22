@@ -74,48 +74,46 @@ function Register(props) {
     <div className="registration_container">
       <h1>REGISTER</h1>
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
-        <h1>
-          <Form.Input
-            label="Username"
-            placeholder="exampleUsername123"
-            name="username"
-            type="text"
-            value={inputs.username}
-            error={errors.username ? true : false}
-            onChange={onChange}
-          />
-          <Form.Input
-            label="Email"
-            placeholder="example.email@emai.com"
-            name="email"
-            type="email"
-            value={inputs.email}
-            error={errors.email ? true : false}
-            onChange={onChange}
-          />
-          <Form.Input
-            label="Password"
-            placeholder="*********"
-            name="password"
-            type="password"
-            value={inputs.password}
-            error={errors.password ? true : false}
-            onChange={onChange}
-          />
-          <Form.Input
-            label="Confirm Password"
-            placeholder="*********"
-            name="confirmPassword"
-            type="password"
-            value={inputs.confirmPassword}
-            error={errors.confirmPassword ? true : false}
-            onChange={onChange}
-          />
-          <Button icon labelPosition="right">
-            Submit
-            <Icon name="right arrow" />
-          </Button>
-        </h1>
+        <Form.Input
+          label="Username"
+          placeholder="exampleUser123"
+          name="username"
+          type="text"
+          value={inputs.username}
+          error={errors.username ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Email"
+          placeholder="example.email@email.com"
+          name="email"
+          type="email"
+          value={inputs.email}
+          error={errors.email ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Password"
+          placeholder="*********"
+          name="password"
+          type="password"
+          value={inputs.password}
+          error={errors.password ? true : false}
+          onChange={onChange}
+        />
+        <Form.Input
+          label="Confirm Password"
+          placeholder="*********"
+          name="confirmPassword"
+          type="password"
+          value={inputs.confirmPassword}
+          error={errors.confirmPassword ? true : false}
+          onChange={onChange}
+        />
+        <Button icon labelPosition="right">
+          Submit
+          <Icon name="right arrow" />
+        </Button>
       </Form>
       {recieved ? (
         <Message success>
