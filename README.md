@@ -68,8 +68,9 @@ To install and run locally please follow these steps
    ```
 3. Then in two different terminal instances start both:
    ```sh
-   cd front-end && npm start
-   ```
-   ```sh
    cd back-end && npm start
    ```
+   ```sh
+   cd front-end && npm start
+   ```
+  
